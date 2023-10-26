@@ -114,8 +114,8 @@ export class ChatLibService {
     }
   }
 
-  disableButtons(value) {
-    var btns =  this.chatList[this.chatList.length-1].buttons
+  disableButtons(value,  index) {
+    var btns =  this.chatList[index].buttons
     for(var btn of btns) {
       if(value === btn.value) {
         btn.clicked = true

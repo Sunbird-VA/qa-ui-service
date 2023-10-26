@@ -12,6 +12,7 @@ declare const marked:any;
 }) 
 export class ChatMessageComponent implements OnInit {
   @Input() data;
+  @Input() index;
   public buttons = [];
   public isButtonAvailable:boolean = false;
   public unsubscribe$ = new Subject<void>();
@@ -31,7 +32,7 @@ export class ChatMessageComponent implements OnInit {
   }
 
   buttonClicked(value, text, id) {
-    this.disableButtons(value)
+    this.disableButtons(value, this.index)
     const formData = new FormData();
     // append your data
     formData.append('question_id', id);
@@ -39,8 +40,8 @@ export class ChatMessageComponent implements OnInit {
     this.sendMessage(formData)
   }
 
-  disableButtons(value){
-    this.chatService.disableButtons(value)
+  disableButtons(value, index){
+    this.chatService.disableButtons(value, index)
   }
 
   sendMessage(req) {
