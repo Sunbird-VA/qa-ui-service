@@ -1,6 +1,6 @@
 <div #msgScrollToBottom class="messages-container sbsmartscroll-style" id="msgContainer">
-  <ng-container *ngFor="let msg of array">
-    <lib-chat-message [ngClass]="{ 'recieved': msg.type==='recieved', 'sent': msg.type==='sent' }" [data]="msg">
+  <ng-container *ngFor="let msg of array; index as i">
+    <lib-chat-message [ngClass]="{ 'recieved': msg.type==='recieved', 'sent': msg.type==='sent' }" [data]="msg" [index]="i">
   
     </lib-chat-message>
   </ng-container>
