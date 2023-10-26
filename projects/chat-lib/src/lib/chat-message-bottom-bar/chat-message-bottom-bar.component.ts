@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
-import { Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import { ChatLibService } from '../chat-lib.service';
 
 @Component({
@@ -24,20 +24,23 @@ export class ChatMessageBottomBarComponent implements OnInit {
 
   sendMessage() {
     let query = this.messageForm.controls.message.value;
-    if(query) { 
-      this.chatService.chatListPush('sent',query);
-      this.messageForm.controls.message.reset();
-      const req = {
-        query
-      }
-      this.typingLoader = true;
-      this.chatService.chatpostJugalbandi(req).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
-          this.chatService.chatListPushRevised('recieved', data)
-          this.typingLoader = false;
-      },err => {
-        this.chatService.chatListPushRevised('recieved', err.error)
-        this.typingLoader = false;
-      });
+    if (!query) { return; }
+    this.chatService.chatListPush('sent', query);
+    this.messageForm.controls.message.reset();
+    const req = {
+      query
     }
-    }
+    this.typingLoader = true;
+    this.messageForm.disable();
+    this.chatService.chatpostJugalbandi(req).pipe(takeUntil(this.unsubscribe$)).subscribe(data => {
+      this.chatService.chatListPushRevised('recieved', data)
+      this.typingLoader = false;
+      this.messageForm.enable()
+    }, err => {
+      console.log("Error ====> ", err)
+      this.typingLoader = false;
+      this.messageForm.enable()
+      this.chatService.chatListPush('recieved', 'Something went wrong, try again later!' )
+    });
+  }
 }
