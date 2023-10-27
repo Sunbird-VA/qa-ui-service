@@ -21,7 +21,8 @@ export class AppComponent implements OnInit {
               this.botConfig = {
                 header: environment.botName,
                 chatbotUrl: environment.apiUrl,
-                uuid: uuid ?  uuid : environment.uuid
+                uuid: uuid ?  uuid : environment.uuid,
+                imageUrl: "https://www.sunbird.org/images/sunbird-logo-new.png"
               }
            }
        }); 
