@@ -51,7 +51,7 @@
     background: #FFFFFF;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content:space-between;
     padding: 16px 20px;
     color: #fff;
     position: relative;
@@ -66,11 +66,20 @@
         // height: 111px;
         height: 50px;
     }
+    .askdot-logo img {
+        height: 60px;
+    }
     .heading {
         margin-left: 0.5rem;
         flex: 1 1 auto;
         font-size: 1.2rem;
         color: #A85236;
+    }
+    .askdot-logo .heading {
+        position: relative;
+        left: -31px;
+        top: -4px;
+        font-weight: 500;
     }
     .close-container {
         background: rgba(255,255,255,.3);
