@@ -49,10 +49,11 @@
     }
   }
 
-  @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
     .messages-container {
       .recieved{
           align-self: flex-start;
           width: 100%;
       }
   }
+}
